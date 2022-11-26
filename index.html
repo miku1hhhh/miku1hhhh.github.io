@@ -1,2 +1,34 @@
-您好，你看到的页面是一个bilibili UID:687475653，的人建造
-如果你感到无聊，你可以逛一逛<a href="https://miku1hhhh.github.io/mikufans.github.io/" >轻按此处</a>这里
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>这是个东西</title>
+</head>
+<head>
+<script>
+function startTime(){
+    var today=new Date();
+    var h=today.getHours();
+    var m=today.getMinutes();
+    var s=today.getSeconds();// 在小于10的数字钱前加一个‘0’
+    m=checkTime(m);
+    s=checkTime(s);
+    document.getElementById('txt').innerHTML=h+":"+m+":"+s;
+    t=setTimeout(function(){startTime()},500);
+}
+function checkTime(i){
+    if (i<10){
+        i="0" + i;
+    }
+    return i;
+}
+</script>
+</head>
+<body onload="startTime()">
+     
+<div id="txt"></div>
+     
+</body>
+</html>
+＞您好，你看到的页面是一个bilibili UID:687475653，的人建造
+如果你感到无聊，你可以逛一逛<a href="https://miku1hhhh.github.io/mikufans.github.io/" >轻按此处</a>这里＜
