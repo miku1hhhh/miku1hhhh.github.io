@@ -3,20 +3,32 @@
 <head>
 <meta charset=utf-8 />
 <title>videojs-contrib-hls embed</title>
-<script src="https://cdn.jsdelivr.net/npm/chimee@0.12.0/lib/index.browser.js"></script>
+ <script type="text/javascript" src="https://miku1hhhh.github.io/dist/hls.js"></script>
 </head>
 <body>
   <h1>test</h1>
-<div id="wrapper"></div>
-	<script>
-		new ChimeePlayer({
-			wrapper: '#wrapper', // video dom容器
-			src: 'https://cdn.jsdelivr.us/gh/miku1hhhh/miku1hhhh.github.io@main/aotu1/do.m3u8',
-			box: 'hls',
-			isLive: true,
-			autoplay: true,
-			controls: true
+
+ <video id="HLS_Player" autoplay="autoplay" loop muted controls="controls" width="100%" height="100%"></video>
+ 
+<script type="text/javascript" >
+	 HLS_Player = document.getElementById('HLS_Player');
+	if (Hls.isSupported()) {
+			HLS_Controller = new Hls();
+			HLS_Controller.loadSource("https://cdn.jsdelivr.us/gh/miku1hhhh/miku1hhhh.github.io@main/aotu1/do.m3u8");
+			HLS_Controller.attachMedia(HLS_Player);
+			HLS_Controller.on(Hls.Events.MANIFEST_PARSED, function() {
+			    HLS_Player.play();
+	        });
+						
+	}
+else if (HLS_Player.canPlayType('application/vnd.apple.mpegurl')) {
+		HLS_Player.src = 'https://cdn.jsdelivr.us/gh/miku1hhhh/miku1hhhh.github.io@main/aotu1/do.m3u8';
+		HLS_Player.addEventListener('loadedmetadata', function() {
+		    HLS_Player.play();
 		});
-	</script>
+	}
+</script>
+
+
 </body>
 </html>
