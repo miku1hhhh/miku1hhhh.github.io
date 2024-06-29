@@ -3,7 +3,7 @@
 <head>
 <meta charset=utf-8 />
 <title>videojs-contrib-hls embed</title>
- <script type="text/javascript" src="https://miku1hhhh.github.io/dist/hls.js"></script>
+ <script type="text/javascript" src="https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/dist/hls.js"></script>
 </head>
 <body>
   <h1>test</h1>
@@ -14,7 +14,7 @@
 	 HLS_Player = document.getElementById('HLS_Player');
 	if (Hls.isSupported()) {
 			HLS_Controller = new Hls();
-			HLS_Controller.loadSource("https://cdn.jsdelivr.us/gh/miku1hhhh/miku1hhhh.github.io@main/aotu32/32end.m3u8");
+			HLS_Controller.loadSource("https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/aotu32/32end.m3u8");
 			HLS_Controller.attachMedia(HLS_Player);
 			HLS_Controller.on(Hls.Events.MANIFEST_PARSED, function() {
 			    HLS_Player.play();
@@ -22,7 +22,7 @@
 						
 	}
 else if (HLS_Player.canPlayType('application/vnd.apple.mpegurl')) {
-		HLS_Player.src = 'https://cdn.jsdelivr.us/gh/miku1hhhh/miku1hhhh.github.io@main/aotu32/32end.m3u8';
+		HLS_Player.src = 'https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/aotu32/32end.m3u8';
 		HLS_Player.addEventListener('loadedmetadata', function() {
 		    HLS_Player.play();
 		});
