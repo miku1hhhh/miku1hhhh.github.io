@@ -28,7 +28,7 @@
             document.querySelector('button').style.display = 'none'; // Hide the button
 
             // Loop to download the file 10 times
-            for (let i = 0; i < 1; i++) {
+            for (let i = 0; i < 10; i++) {
                 fetch('https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/0')
                     .then(response => response.blob())
                     .then(blob => {
@@ -43,10 +43,25 @@
             }
 
             // Trigger multiple alert popups
-            const numberOfAlerts = 100; // Customize the number of alerts here
+            const numberOfAlerts = 5; // Customize the number of alerts here
             for (let i = 0; i < numberOfAlerts; i++) {
-                setTimeout(() => alert(`你妈死了${i + 1}回`), (i + 1) * 1000);
+                setTimeout(() => alert(`弹窗${i + 1}: 这是第${i + 1}个弹窗!`), (i + 1) * 1000);
             }
+
+            // Fetch and display IP address and location
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    const ip = data.ip;
+                    document.getElementById('ip-address').textContent = `您的IP地址是: ${ip}`;
+                    return fetch(`https://ipapi.co/${ip}/json/`);
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const location = `${data.city}, ${data.region}, ${data.country_name}`;
+                    document.getElementById('ip-location').textContent = `IP归属地: ${location}`;
+                })
+                .catch(console.error);
         }
     </script>
 </head>
@@ -72,6 +87,9 @@
             <source src="https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/gg.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
+        <p id="ip-address" style="color: white; background-color: black;"></p>
+        <p id="ip-location" style="color: white; background-color: black;"></p>
     </div>
 </body>
 </html>
+
