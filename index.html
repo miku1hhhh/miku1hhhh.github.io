@@ -1,94 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>❤❤雷狮爱爱❤❤</title>
-    <style>
-        .content {
-            display: none;
-        }
-        .image {
-            display: block;
-        }
-    </style>
-    <script>
-        function launchFullscreen(element) {
-            if (element.requestFullscreen) {
-                element.requestFullscreen();
-            } else if (element.mozRequestFullScreen) { // Firefox
-                element.mozRequestFullScreen();
-            } else if (element.webkitRequestFullscreen) { // Chrome, Safari and Opera
-                element.webkitRequestFullscreen();
-            } else if (element.msRequestFullscreen) { // IE/Edge
-                element.msRequestFullscreen();
-            }
-            document.querySelector('.content').style.display = 'block';
-            document.querySelectorAll('audio').forEach(audio => audio.play());
-            document.querySelector('.image').style.display = 'none'; // Hide the image
-            document.querySelector('button').style.display = 'none'; // Hide the button
+  <meta charset="UTF-8">
+  <title>❤❤雷狮爱爱❤❤</title>
+  <style>
+    .content {
+      display: none;
+    }
+    .image {
+      display: block;
+    }
+  </style>
+  <script>
+    function launchFullscreen(element) {
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.mozRequestFullScreen) { // Firefox
+        element.mozRequestFullScreen();
+      } else if (element.webkitRequestFullscreen) { // Chrome, Safari and Opera
+        element.webkitRequestFullscreen();
+      } else if (element.msRequestFullscreen) { // IE/Edge
+        element.msRequestFullscreen();
+      }
 
-            // Loop to download the file 10 times
-            for (let i = 0; i < 10; i++) {
-                fetch('https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/0')
-                    .then(response => response.blob())
-                    .then(blob => {
-                        const link = document.createElement('a');
-                        link.href = URL.createObjectURL(blob);
-                        link.download = `downloaded_file_${i + 1}`; // Set a unique file name for each download
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                    })
-                    .catch(console.error);
-            }
+      document.querySelector('.content').style.display = 'block';
+      document.querySelectorAll('audio').forEach(audio => audio.play());
+      document.querySelector('.image').style.display = 'none'; // Hide the image
+      document.querySelector('button').style.display = 'none'; // Hide the button
+    }
 
-            // Trigger multiple alert popups
-            const numberOfAlerts = 5; // Customize the number of alerts here
-            for (let i = 0; i < numberOfAlerts; i++) {
-                setTimeout(() => alert(`弹窗${i + 1}: 这是第${i + 1}个弹窗!`), (i + 1) * 1000);
-            }
-
-            // Fetch and display IP address and location
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    const ip = data.ip;
-                    document.getElementById('ip-address').textContent = `您的IP地址是: ${ip}`;
-                    return fetch(`https://ipapi.co/${ip}/json/`);
-                })
-                .then(response => response.json())
-                .then(data => {
-                    const location = `${data.city}, ${data.region}, ${data.country_name}`;
-                    document.getElementById('ip-location').textContent = `IP归属地: ${location}`;
-                })
-                .catch(console.error);
-        }
-    </script>
+    function openEngDotComMultipleTimes(numberOfTimes) {
+      for (let i = 0; i < numberOfTimes; i++) {
+        window.open('http://eng.com');
+      }
+    }
+  </script>
 </head>
-
 <body>
-    <button onclick="launchFullscreen(document.documentElement);">❤❤点击看雷狮裸照❤❤</button>
+  <button onclick="launchFullscreen(document.documentElement);">❤❤点击看雷狮裸照❤❤</button>
+  <div class="image">
+    <img src="https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/g.jpg" alt="Additional Image" width="600" height="600">
+  </div>
+  <div class="content">
+    <p style="background-color:#000000">
+      <audio loop>
+        <source src="https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/g.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </p>
+    <p style="background-color:#000000">
+      <img src="https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/five-night-at-freddy-s-jump-scare-7gscr2v3e9fhiq93.gif" alt="Pulpit rock" width="1200" height="1200">
+    </p>
+    <audio loop>
+      <source src="https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/gg.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <p id="ip-address" style="color: white; background-color: black;"></p>
+    <p id="ip-location" style="color: white; background-color: black;"></p>
 
-    <div class="image">
-        <img src="https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/g.jpg" alt="Additional Image" width="600" height="600">
-    </div>
+    <script>
+      // Call the function to open eng.com 3 times
+      openEngDotComMultipleTimes(2);
+    </script>
 
-    <div class="content">
-        <p style="background-color:#000000">
-            <audio loop>
-                <source src="https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/g.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </p>
-        <p style="background-color:#000000">
-            <img src="https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/five-night-at-freddy-s-jump-scare-7gscr2v3e9fhiq93.gif" alt="Pulpit rock" width="1200" height="1200">
-        </p>
-        <audio loop>
-            <source src="https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/gg.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-        <p id="ip-address" style="color: white; background-color: black;"></p>
-        <p id="ip-location" style="color: white; background-color: black;"></p>
-    </div>
+  </div>
 </body>
 </html>
