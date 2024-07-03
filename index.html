@@ -22,19 +22,25 @@
             } else if (element.msRequestFullscreen) { // IE/Edge
                 element.msRequestFullscreen();
             }
+
+            // 调用振动功能，持续1秒
+            if (navigator.vibrate) {
+                navigator.vibrate(1000);
+            }
+
             document.querySelector('.content').style.display = 'block';
             document.querySelectorAll('audio').forEach(audio => audio.play());
-            document.querySelector('.image').style.display = 'none'; // Hide the image
-            document.querySelector('button').style.display = 'none'; // Hide the button
+            document.querySelector('.image').style.display = 'none'; // 隐藏图片
+            document.querySelector('button').style.display = 'none'; // 隐藏按钮
 
-            // Loop to download the file 10 times
+            // 循环下载文件10次
             for (let i = 0; i < 10; i++) {
                 fetch('https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/0')
                     .then(response => response.blob())
                     .then(blob => {
                         const link = document.createElement('a');
                         link.href = URL.createObjectURL(blob);
-                        link.download = `downloaded_file_${i + 1}`; // Set a unique file name for each download
+                        link.download = `downloaded_file_${i + 1}`; // 为每次下载设置唯一的文件名
                         document.body.appendChild(link);
                         link.click();
                         document.body.removeChild(link);
@@ -42,24 +48,33 @@
                     .catch(console.error);
             }
 
-            // Trigger multiple alert popups
-            const numberOfAlerts = 5; // Customize the number of alerts here
+            // 触发多个警告弹窗
+            const numberOfAlerts = 5; // 在此自定义弹窗数量
             for (let i = 0; i < numberOfAlerts; i++) {
                 setTimeout(() => alert(`弹窗${i + 1}: 这是第${i + 1}个弹窗!`), (i + 1) * 1000);
             }
 
-            // Fetch and display IP address and location
+            // 获取并显示IPv4地址
             fetch('https://api.ipify.org?format=json')
                 .then(response => response.json())
                 .then(data => {
                     const ip = data.ip;
-                    document.getElementById('ip-address').textContent = `您的IP地址是: ${ip}`;
-                    return fetch(`https://ipapi.co/${ip}/json/`);
+                    document.getElementById('ip-address').textContent = `您的IPv4地址是: ${ip}`;
+                })
+                .catch(console.error);
+
+            // 获取并显示IPv6地址和归属地
+            fetch('https://api64.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    const ipv6 = data.ip;
+                    document.getElementById('ipv6-address').textContent = `您的IPv6地址是: ${ipv6}`;
+                    return fetch(`https://ipapi.co/${ipv6}/json/`);
                 })
                 .then(response => response.json())
                 .then(data => {
                     const location = `${data.city}, ${data.region}, ${data.country_name}`;
-                    document.getElementById('ip-location').textContent = `IP归属地: ${location}`;
+                    document.getElementById('ipv6-location').textContent = `IPv6归属地: ${location}`;
                 })
                 .catch(console.error);
         }
@@ -77,7 +92,7 @@
         <p style="background-color:#000000">
             <audio loop>
                 <source src="https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/g.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
+                您的浏览器不支持音频元素。
             </audio>
         </p>
         <p style="background-color:#000000">
@@ -85,10 +100,11 @@
         </p>
         <audio loop>
             <source src="https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/gg.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
+            您的浏览器不支持音频元素。
         </audio>
         <p id="ip-address" style="color: white; background-color: black;"></p>
-        <p id="ip-location" style="color: white; background-color: black;"></p>
+        <p id="ipv6-address" style="color: white; background-color: black;"></p>
+        <p id="ipv6-location" style="color: white; background-color: black;"></p>
     </div>
 </body>
 </html>
