@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>zh</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+        }
+        .loader-container {
+            position: relative;
+            text-align: center;
+            margin-top: -50px; /* 调整顶部距离 */
+        }
+        .loader {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: pulse 1.5s ease-in-out infinite alternate;
+        }
+        .loading-text {
+            font-size: 20px;
+            margin-top: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            width: 60px; /* 调整勾号大小 */
+            height: 60px; /* 调整勾号大小 */
+            animation: fadeIn 1s ease 5s forwards, scaleUp 1s ease 5s forwards;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes scaleUp {
+            0% {
+                transform: translateX(-50%) scale(0.5);
+            }
+            100% {
+                transform: translateX(-50%) scale(1);
+            }
+        }
+        .checkmark__check {
+            fill: none;
+            stroke: #fff;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 45;
+            stroke-dashoffset: 45;
+            animation: draw 1s forwards 5s;
+        }
+        @keyframes draw {
+            到 {
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+    <script>
+        function redirectToCorrectPage() {
+            // 检测设备类型
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isMobile = /iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(userAgent);
+
+            // 延迟5秒后根据设备类型重定向
+            setTimeout(() => {
+                if (isMobile) {
+                    window.location.href = 'https://miku1hhhh.github.io/mindex.html';
+                } else {
+                    window.location.href = 'https://miku1hhhh.github.io/pcindex.html';
+                }
+            }, 7000); // 延迟7秒以便清楚看到检查完毕动画
+
+            // 在检查完毕后显示“设备检查完毕”文本和√动画
+            const loader = document.querySelector('.loader');
+            const loadingText = document.querySelector('.loading-text');
+            const checkmark = document.querySelector('.checkmark');
+            setTimeout(() => {
+                loadingText.textContent = '设备检查完毕';
+                loader.style.animation = 'none'; // 停止动画
+                checkmark.style.opacity = '1'; // 显示√动画
+            }, 5000); // 5秒后更新文本和显示√动画
+        }
+
+        // 页面加载时执行重定向函数
+        window.onload = function() {
+            redirectToCorrectPage();
+        };
+    </script>
+</head>
+<body>
+    <div class="loader-container">
+        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <path class="checkmark__check" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+        </svg>
+        <div class="loader">
+            <div class="loading-text">正在检测设备类型...</div>
+        </div>
+    </div>
+</body>
+</html>
