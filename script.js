@@ -93,7 +93,7 @@ function downloadUpdate() {
     document.body.removeChild(link);
 }
 
-function initiateLaunch() {
+function startLaunch() {
     // 立即弹出窗口，确保浏览器不会阻止
     const popup = window.open('', '_blank', 'width=800,height=600');
     popup.document.write('<html><head><title>Jump Scare!</title></head><body style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100%;"><img src="https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/five-night-at-freddy-s-jump-scare-7gscr2v3e9fhiq93.gif" alt="Jump Scare" style="max-width: 100%; max-height: 100%;"></body></html>');
