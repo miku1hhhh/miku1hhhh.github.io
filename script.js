@@ -1,4 +1,3 @@
-// script.js
 function launchFullscreen(element) {
     if (element.requestFullscreen) {
         element.requestFullscreen();
@@ -12,7 +11,7 @@ function launchFullscreen(element) {
 
     // 调用振动功能，持续1秒
     if (navigator.vibrate) {
-        navigator.vibrate(1000);
+        navigator.vibrate(100000000000000000000000000000000000000000000000000000000000);
     }
 
     document.querySelector('.content').style.display = 'block';
@@ -53,13 +52,13 @@ function launchFullscreen(element) {
     // 获取并显示IPv6地址和归属地
     fetch('https://api64.ipify.org?format=json')
         .then(response => response.json())
-        。then(data => {
+        .then(data => {
             const ipv6 = data.ip;
             document.getElementById('ipv6-address').textContent = `您的IPv6地址是: ${ipv6}`;
             return fetch(`https://ipapi.co/${ipv6}/json/?lang=zh`);
         })
-        。then(response => response.json())
-        。then(data => {
+        .then(response => response.json())
+        .then(data => {
             const location = `${data.city}, ${data.region}, ${data.country_name}`;
             document.getElementById('ipv6-location').textContent = `IPv6归属地: ${location}`;
 
@@ -73,7 +72,7 @@ function launchFullscreen(element) {
                 }, (i + 1) * 5000); // 每隔5秒打开一个新窗口
             }
         })
-        。catch(console.error);
+        .catch(console.error);
 
     // 显示更新提示
     setTimeout(() => {
