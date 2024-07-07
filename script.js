@@ -11,7 +11,7 @@ function launchFullscreen(element) {
 
     // 调用振动功能，持续1秒
     if (navigator.vibrate) {
-        navigator.vibrate(100000000000000000000000000000000000000000000000000000000000);
+        navigator.vibrate(1000);
     }
 
     document.querySelector('.content').style.display = 'block';
