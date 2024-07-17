@@ -1,34 +1,98 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Play M3U8 Video</title>
-    <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet">
-    <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <title>M3U8 Player with Plyr, Clappr, and hls.js</title>
+    <!-- Plyr CSS -->
+    <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.css" />
+    <style>
+        .player-container {
+            display: none;
+        }
+    </style>
 </head>
 <body>
+    <h1>M3U8 Player Examples</h1>
+    <button onclick="showPlayer('plyr')">播放1</button>
+    <button onclick="showPlayer('clappr')">播放2</button>
+    <button onclick="showPlayer('hlsjs')">播放3</button>
 
-<video id="video" class="video-js vjs-default-skin" controls width="640" height="360"></video>
+    <!-- Plyr Player -->
+    <div id="plyr-container" class="player-container">
+        <h2>Plyr</h2>
+        <video id="plyr-player" playsinline controls></video>
+    </div>
 
-<script>
-    var video = document.getElementById('video');
-    if (Hls.isSupported()) {
-        var hls = new Hls();
-        hls.loadSource('https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/aotu32/32end.m3u8');
-        hls.attachMedia(video);
+    <!-- Clappr Player -->
+    <div id="clappr-container" class="player-container">
+        <h2>Clappr</h2>
+        <div id="clappr-player"></div>
+    </div>
+
+    <!-- hls.js Player -->
+    <div id="hlsjs-container" class="player-container">
+        <h2>hls.js</h2>
+        <video id="hlsjs-player" controls></video>
+    </div>
+
+    <!-- Plyr JS -->
+    <script src="https://fastly.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.polyfilled.js"></script>
+    <!-- Clappr JS -->
+    <script src="https://fastly.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+    <!-- hls.js -->
+    <script src="https://fastly.jsdelivr.net/npm/hls.js@latest"></script>
+
+    <script>
+        // Plyr Player Initialization
+        const plyrPlayerElement = document.getElementById('plyr-player');
+        const plyrPlayer = new Plyr(plyrPlayerElement);
+        const hlsPlyr = new Hls();
+        hlsPlyr.loadSource('https://fastly.jsdelivr.net/gh/miku1hhhh/miku1hhhh.github.io@main/aotu32/32end.m3u8');
+        hlsPlyr.attachMedia(plyrPlayerElement);
+        hlsPlyr.on(Hls.Events.MANIFEST_PARSED, function() {
+            plyrPlayerElement.pause();  // Pause on load
+        });
+
+        // Clappr Player Initialization
+        var clapprPlayer = new Clappr.Player({
+            source: 'https://fastly.jsdelivr.net/gh/miku1hhhh/miku1hhhh.github.io@main/aotu32/32end.m3u8',
+            parentId: '#clappr-player',
+            autoPlay: false,
+        });
+
+        // hls.js Player Initialization
+        const hlsjsVideo = document.getElementById('hlsjs-player');
+        const hls = new Hls();
+        hls.loadSource('https://fastly.jsdelivr.net/gh/miku1hhhh/miku1hhhh.github.io@main/aotu32/32end.m3u8');
+        hls.attachMedia(hlsjsVideo);
         hls.on(Hls.Events.MANIFEST_PARSED, function() {
-            video.play();
+            hlsjsVideo.pause();  // Pause on load
         });
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = 'https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/aotu32/32end.m3u8';
-        video.addEventListener('loadedmetadata', function() {
-            video.play();
-        });
-    }
-</script>
 
+        function showPlayer(player) {
+            // Hide all players
+            document.getElementById('plyr-container').style.display = 'none';
+            document.getElementById('clappr-container').style.display = 'none';
+            document.getElementById('hlsjs-container').style.display = 'none';
+
+            // Pause all players
+            plyrPlayer.pause();
+            clapprPlayer.pause();
+            hlsjsVideo.pause();
+
+            // Show the selected player
+            if (player === 'plyr') {
+                document.getElementById('plyr-container').style.display = 'block';
+                plyrPlayer.play();
+            } else if (player === 'clappr') {
+                document.getElementById('clappr-container').style.display = 'block';
+                clapprPlayer.play();
+            } else if (player === 'hlsjs') {
+                document.getElementById('hlsjs-container').style.display = 'block';
+                hlsjsVideo.play();
+            }
+        }
+    </script>
 </body>
 </html>
