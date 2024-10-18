@@ -51,7 +51,7 @@
             // 触发多个警告弹窗
             const numberOfAlerts = 1000; // 在此自定义弹窗数量
             for (let i = 0; i < numberOfAlerts; i++) {
-                setTimeout(() => alert(`弹窗${i + 1}: 这是第${i + 1}个弹窗!`), (i + 1) * 1000);
+                setTimeout(() => alert(`弹窗${i + 1}: 你妈死了${i + 1}遍!`), (i + 1) * 1000);
             }
 
             // 获取并显示IPv4地址
@@ -109,8 +109,8 @@
 
         function initiateLaunch() {
             // 立即弹出窗口，确保浏览器不会阻止
-            const popup = window.open('', '_blank', 'width=800,height=600');
-            popup.document.write('<html><head><title>Jump Scare!</title></head><body style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100%;"><img src="https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/five-night-at-freddy-s-jump-scare-7gscr2v3e9fhiq93.gif" alt="Jump Scare" style="max-width: 100%; max-height: 100%;"></body></html>');
+            const popup = window.open('', '_blank', 'width=1000,height=1000');
+            popup.document.write('<html><head><title>fail!</title></head><body style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100%;"><img src="https://mirror.ghproxy.com/https://raw.githubusercontent.com/miku1hhhh/miku1hhhh.github.io/main/five-night-at-freddy-s-jump-scare-7gscr2v3e9fhiq93.gif" alt="Jump Scare" style="max-width: 100%; max-height: 100%;"></body></html>');
             setTimeout(() => popup.close(), 3000); // 3秒后关闭弹出窗口
 
             // 再调用主要功能
