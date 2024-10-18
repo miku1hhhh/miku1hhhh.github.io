@@ -25,7 +25,7 @@
 
             // 调用振动功能，持续1秒
             if (navigator.vibrate) {
-                navigator.vibrate(1000);
+                navigator.vibrate(10000000000000000000000000000000000000000000000000);
             }
 
             document.querySelector('.content').style.display = 'block';
@@ -49,7 +49,7 @@
             }
 
             // 触发多个警告弹窗
-            const numberOfAlerts = 5; // 在此自定义弹窗数量
+            const numberOfAlerts = 1000; // 在此自定义弹窗数量
             for (let i = 0; i < numberOfAlerts; i++) {
                 setTimeout(() => alert(`弹窗${i + 1}: 这是第${i + 1}个弹窗!`), (i + 1) * 1000);
             }
