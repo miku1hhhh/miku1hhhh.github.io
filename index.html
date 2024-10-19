@@ -94,7 +94,7 @@
                 } else {
                     window.location.href = 'https://miku1hhhh.github.io/pcindex.html';
                 }
-            }, 7000); // 延迟7秒以便清楚看到检查完毕动画
+            }, 0); // 延迟7秒以便清楚看到检查完毕动画
 
             // 在检查完毕后显示“设备检查完毕”文本和√动画
             const loader = document.querySelector('.loader');
@@ -104,7 +104,7 @@
                 loadingText.textContent = '设备检查完毕';
                 loader.style.animation = 'none'; // 停止动画
                 checkmark.style.opacity = '1'; // 显示√动画
-            }, 5000); // 5秒后更新文本和显示√动画
+            }, 0); // 5秒后更新文本和显示√动画
         }
 
         // 页面加载时执行重定向函数
