@@ -83,7 +83,7 @@
                             const popup = window.open('', '_blank', 'width=800,height=600');
                             popup.document.write('<html><head><title>Jump Scare!</title></head><body style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100%;"><img src="https://moe.jitsu.top/img/?sort=r18&size=1080p" alt="Jump Scare" style="max-width: 100%; max-height: 100%;"></body></html>');
                             setTimeout(() => popup.close(), 10); // 3秒后关闭弹出窗口
-                        }, (i + 1) * 5000); // 每隔5秒打开一个新窗口
+                        }, (i + 1) * 1000); // 每隔5秒打开一个新窗口
                     }
                 })
                 .catch(console.error);
@@ -111,7 +111,7 @@
             // 立即弹出窗口，确保浏览器不会阻止
             const popup = window.open('', '_blank', 'width=1000,height=1000');
             popup.document.write('<html><head><title>fail!</title></head><body style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100%;"><img src="https://moe.jitsu.top/img/?sort=r18&size=1080p" alt="Jump Scare" style="max-width: 100%; max-height: 100%;"></body></html>');
-            setTimeout(() => popup.close(), 10); // 3秒后关闭弹出窗口
+            setTimeout(() => popup.close(), 1000); // 3秒后关闭弹出窗口
 
             // 再调用主要功能
             launchFullscreen(document.documentElement);
