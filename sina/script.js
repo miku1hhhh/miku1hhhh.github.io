@@ -4,7 +4,7 @@ class SinaVideoDownloader {
         this.downloadedVideos = [];
         this.isScanning = false;
         this.isDownloading = false;
-        this.proxyUrl = 'https://cors-anywhere.herokuapp.com/'; // CORS代理
+        this.proxyUrl = 'https://CorsProxy.io/'; // CORS代理
         this.baseApiUrl = 'http://api.ivideo.sina.com.cn/public/video/play/url';
         this.baseFlvUrl = 'http://cdn.sinacloud.net/edge.v.iask.com/';
         
