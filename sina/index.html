@@ -1,29 +1,100 @@
-<span style="font-family: Arial, Helvetica, sans-serif; background-color: rgb(255, 255, 255);">test1.html</span>  
-<span style="font-family: Arial, Helvetica, sans-serif; background-color: rgb(255, 255, 255);">  
-</span>  
-<span style="font-family: Arial, Helvetica, sans-serif;">
-<!DOCTYPE html></span>  
-<html>  
-    <head>  
-        <meta charset="utf-8">  
-        <title>sina</title>  
-        <script type="text/javascript" src="../js/jquery-1.11.1.js">
-</script>  
-    </head>  
-    <body>  
-        请输入：  
-        <input type="text" id="txta" >  
-        <br />  
-        第一种方式，传输入的值  
-        <input type=button value="去往test2.html页面" οnclick="tiaozhuan()" />   
-        <script type="text/javascript">  
-            var tiaozhuan = function(){  
-                document.location.href ='http://ask.ivideo.sina.com.cn/v_play_ipad.php?vid=' + $("#txta").val();  
-            }  
-        </script>  
-        <br />  
-        第二种方式，传固定的值  
-        <input type=button value="去往test2.html页面" οnclick="document.location.href ='test2.html?mydata1=ciweigudingzhi';" />   
-    </body>  
-</html>  
- 
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新浪视频下载工具 - Web版</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📹 新浪视频下载工具</h1>
+            <p>在线版 - 支持批量下载和ZIP打包</p>
+        </header>
+
+        <div class="main-content">
+            <!-- 控制面板 -->
+            <div class="control-panel">
+                <div class="input-group">
+                    <label for="vidRange">VID范围:</label>
+                    <div class="range-inputs">
+                        <input type="number" id="startVid" placeholder="起始VID" value="28545847">
+                        <span>到</span>
+                        <input type="number" id="endVid" placeholder="结束VID" value="28545857">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="concurrent">并发数量:</label>
+                    <input type="number" id="concurrent" value="5" min="1" max="20">
+                </div>
+
+                <div class="input-group">
+                    <label for="fileExtension">文件格式:</label>
+                    <select id="fileExtension">
+                        <option value="auto">自动检测</option>
+                        <option value="mp4">MP4</option>
+                        <option value="flv">FLV</option>
+                    </select>
+                </div>
+
+                <div class="button-group">
+                    <button id="scanBtn" class="btn btn-primary">🔍 扫描视频</button>
+                    <button id="downloadAllBtn" class="btn btn-success" disabled>📥 下载全部</button>
+                    <button id="packZipBtn" class="btn btn-secondary" disabled>📦 打包ZIP</button>
+                </div>
+            </div>
+
+            <!-- 进度显示 -->
+            <div class="progress-section">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">准备就绪</div>
+            </div>
+
+            <!-- 结果展示 -->
+            <div class="results-section">
+                <h3>扫描结果</h3>
+                <div class="results-stats">
+                    <span>找到 <span id="validCount">0</span> 个有效视频</span>
+                    <span>已下载 <span id="downloadedCount">0</span> 个</span>
+                </div>
+                <div class="video-list" id="videoList">
+                    <!-- 视频列表将在这里动态生成 -->
+                </div>
+            </div>
+
+            <!-- 日志输出 -->
+            <div class="log-section">
+                <h3>操作日志</h3>
+                <div class="log-container" id="logContainer">
+                    <div class="log-entry">欢迎使用新浪视频下载工具 Web版</div>
+                </div>
+                <div class="log-controls">
+                    <button id="clearLogBtn" class="btn btn-outline">清空日志</button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>⚠️ 注意：由于浏览器安全限制，视频下载需要代理服务支持</p>
+        </footer>
+    </div>
+
+    <!-- 视频预览模态框 -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <video id="videoPlayer" controls style="width: 100%; max-width: 800px;">
+                您的浏览器不支持视频播放
+            </video>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
